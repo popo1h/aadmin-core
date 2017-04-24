@@ -16,11 +16,15 @@ class TemplateProvider implements ServiceProviderInterface
             $loader = new TemplateLoader($pimple['config']->getCachePath() . DIRECTORY_SEPARATOR . 'template');
 
             $loader->addPath($pimple['config']->getBaseTemplatePath() . DIRECTORY_SEPARATOR . $pimple['config']->getBaseTemplateName(), '__base__');
-            $loader->addPath($pimple['config']->getLocalTemplatePath(), '__local__');
 
-            $serverUrlMap = $pimple['config']->getServerUrlMap();
-            foreach ($serverUrlMap as $cateName => $serverUrl) {
-                $loader->addPath($cateName, $cateName);
+            try {
+                $loader->addPath($pimple['config']->getLocalTemplatePath(), '__local__');
+
+                $serverUrlMap = $pimple['config']->getServerUrlMap();
+                foreach ($serverUrlMap as $cateName => $serverUrl) {
+                    $loader->addPath($cateName, $cateName);
+                }
+            } catch (\Exception $e) {
             }
 
             return $loader;
