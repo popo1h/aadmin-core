@@ -1,0 +1,26 @@
+{
+  "name": "popo1h/aadmin_core",
+  "description": "core for aadmin",
+  "type": "library",
+  "keywords": [
+    "aadmin"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "popo1h",
+      "email": "popo1h@sina.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "twig/twig": "~2.0",
+    "pimple/pimple": "~3.0",
+    "doctrine/cache": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AadminCore\\": "src/"
+    }
+  }
+}
