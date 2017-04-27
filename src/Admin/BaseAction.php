@@ -8,8 +8,8 @@ use AadminCore\Core\Response\View;
 
 abstract class BaseAction extends Action
 {
-    const STATUS_SUCCESS = 1;
-    const STATUS_ERROR = 0;
+    const CODE_SUCCESS = 1;
+    const CODE_ERROR = 0;
 
     protected function buildViewPage($nowPage, $totalCount, $perPageCount, $pageParamName = 'page_id')
     {
@@ -41,12 +41,12 @@ abstract class BaseAction extends Action
         ];
     }
 
-    protected function buildAjaxResponse($status, $info, $data = null, $jump = null)
+    protected function buildAjaxResponse($code, $info, $data = null, $jump = null)
     {
         $response = new Json();
 
         $response->setData([
-            'status' => $status,
+            'code' => $code,
             'info' => $info,
             'data' => $data,
             'jump' => $jump,
