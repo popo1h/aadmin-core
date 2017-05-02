@@ -41,13 +41,13 @@ abstract class BaseAction extends Action
         ];
     }
 
-    protected function buildAjaxResponse($code, $info, $data = null, $jump = null)
+    protected function buildAjaxResponse($code, $msg, $data = null, $jump = null)
     {
         $response = new Json();
 
         $response->setData([
             'code' => $code,
-            'info' => $info,
+            'msg' => $msg,
             'data' => $data,
             'jump' => $jump,
         ]);

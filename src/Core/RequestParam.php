@@ -73,7 +73,7 @@ class RequestParam implements \Serializable
      * @param callable $dealFunction
      * @return mixed
      */
-    public function getPostDataByName($name, $default, $dealFunction = null)
+    public function getPostDataByName($name, $default = null, $dealFunction = null)
     {
         if (!isset($this->post[$name])) {
             return $default;
@@ -93,7 +93,7 @@ class RequestParam implements \Serializable
      * @param callable $dealFunction
      * @return mixed
      */
-    public function getGetDataByName($name, $default, $dealFunction = null)
+    public function getGetDataByName($name, $default = null, $dealFunction = null)
     {
         if (!isset($this->get[$name])) {
             return $default;
@@ -105,6 +105,27 @@ class RequestParam implements \Serializable
         }
 
         return $getData;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $default
+     * @param callable $dealFunction
+     * @return mixed
+     */
+    public function getDataByName($name, $default = null, $dealFunction = null)
+    {
+        $result = $this->getPostDataByName($name, null, $dealFunction);
+
+        if (!isset($result)) {
+            $result = $this->getGetDataByName($name, null, $dealFunction);
+        }
+
+        if (!isset($result)) {
+            $result = $default;
+        }
+
+        return $result;
     }
 
     protected function getSerializeValMap()

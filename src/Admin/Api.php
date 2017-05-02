@@ -90,9 +90,6 @@ class Api
         if (!isset($actionName)) {
             throw (new AadminCoreException('action name is empty'));
         }
-        if (!isset($cateName)) {
-            $cateName = '__local__';
-        }
 
         $get = $_GET;
         unset($get['__aadmin_cate_name']);
@@ -120,6 +117,9 @@ class Api
             $param = $interceptParam['param'];
         }
 
+        if (!isset($cateName)) {
+            $cateName = '__local__';
+        }
         if ($cateName == '__local__') {
             $action = $this->getLocalAction($actionName);
 
