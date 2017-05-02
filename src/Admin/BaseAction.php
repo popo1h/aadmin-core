@@ -11,12 +11,13 @@ abstract class BaseAction extends Action
     const CODE_SUCCESS = 1;
     const CODE_ERROR = 0;
 
-    protected function buildViewPage($nowPage, $totalCount, $perPageCount, $pageParamName = 'page_id')
+    protected function buildViewPage($nowPage, $totalCount, $perPageCount, $extraParam = [], $pageParamName = 'page_id')
     {
         return [
             'now_page' => $nowPage,
             'total_count' => $totalCount,
             'per_page_count' => $perPageCount,
+            'extra_param' => (is_array($extraParam) ? $extraParam : []),
             'page_param_name' => $pageParamName,
             'now_action_name' => static::getName(),
         ];
