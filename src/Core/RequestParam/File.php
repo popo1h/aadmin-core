@@ -84,7 +84,7 @@ class File implements \Serializable
     {
         $dir = $tmp_dir = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
 
-        $fileName = 'aadmin_upload_file_' . md5(time()) . mt_rand(1000, 999);
+        $fileName = 'aadmin_upload_file_' . md5(time()) . mt_rand(1000, 9999);
 
         $this->fileName = $dir . DIRECTORY_SEPARATOR . $fileName;
 
