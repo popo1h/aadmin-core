@@ -82,7 +82,7 @@ class File implements \Serializable
 
     private function saveFile()
     {
-        $dir = $tmp_dir = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
+        $dir = (ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir());
 
         $fileName = 'aadmin_upload_file_' . md5(time()) . mt_rand(1000, 9999);
 
