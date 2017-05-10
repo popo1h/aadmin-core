@@ -2,6 +2,8 @@
 
 namespace AadminCore\Core;
 
+use AadminCore\Core\RequestParam\File;
+
 class RequestParam implements \Serializable
 {
     /**
@@ -15,7 +17,7 @@ class RequestParam implements \Serializable
     private $get = [];
 
     /**
-     * @var array
+     * @var File[]
      */
     private $file = [];
 
@@ -56,15 +58,22 @@ class RequestParam implements \Serializable
      */
     public function getFile()
     {
-        return $this->file;
+        $result = [];
+        foreach ($this->file as $key => $file) {
+            $result[$key] = $file->toFile();
+        }
+        return $result;
     }
 
     /**
-     * @param array $file
+     * @param array $files
      */
-    public function setFile($file)
+    public function setFileByFiles($files)
     {
-        $this->file = $file;
+        $this->file = [];
+        foreach ($files as $key => $file) {
+            $this->file[$key] = File::buildByFile($file);
+        }
     }
 
     /**
@@ -105,6 +114,19 @@ class RequestParam implements \Serializable
         }
 
         return $getData;
+    }
+
+    /**
+     * @param string $name
+     * @return array|null
+     */
+    public function getFileDataByName($name)
+    {
+        if (!isset($this->file[$name])) {
+            return [];
+        }
+
+        return $this->file[$name]->toFile();
     }
 
     /**

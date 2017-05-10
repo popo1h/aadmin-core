@@ -98,7 +98,7 @@ class Api
         $param = new RequestParam();
         $param->setGet($get);
         $param->setPost($_POST);
-        $param->setFile($_FILES);
+        $param->setFileByFiles($_FILES);
 
         if (isset($this->interceptors[self::INTERCEPTOR_TYPE_BEFORE_ACTION])) {
             $interceptParam = [
