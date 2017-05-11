@@ -30,4 +30,13 @@ class Redirect extends Response
 
         return $responseOutput;
     }
+
+    protected function getSerializeValMap()
+    {
+        $serializeValMap = parent::getSerializeValMap();
+
+        $serializeValMap[] = 'redirectUrl';
+
+        return $serializeValMap;
+    }
 }
