@@ -10,7 +10,7 @@ class Redirect extends Response
     /**
      * @var string
      */
-    private $redirectUrl;
+    protected $redirectUrl;
 
     /**
      * @param string $redirectUrl

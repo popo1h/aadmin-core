@@ -10,12 +10,12 @@ class Download extends Response
     /**
      * @var string
      */
-    private $filename;
+    protected $filename;
 
     /**
      * @var string
      */
-    private $fileContent;
+    protected $fileContent;
 
     /**
      * @param string $filename
