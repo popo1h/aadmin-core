@@ -50,7 +50,7 @@ class TemplateList extends Action
 
             $fullFilename = $path . DIRECTORY_SEPARATOR . $filename;
             if (is_dir($fullFilename)) {
-                $files = array_merge($files, $this->getFiles($fullFilename, $filename . DIRECTORY_SEPARATOR));
+                $files = array_merge($files, $this->getFiles($fullFilename, $basePath . $filename . DIRECTORY_SEPARATOR));
             } else {
                 $files[$basePath . $filename] = $fullFilename;
             }
