@@ -11,7 +11,7 @@ class ClientProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['client'] = function ($pimple) {
-            return new ApiClient($pimple['config']->getNet(), $pimple['config']->getServerUrlMap());
+            return new ApiClient($pimple['config']->getNet(), $pimple['config']->getServerMap());
         };
     }
 }

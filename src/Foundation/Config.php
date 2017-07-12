@@ -9,10 +9,10 @@ use AadminCore\View\TemplateBaseData;
 class Config
 {
     /**
-     * [ 'cate_name' => 'server_url' ]
+     * [ 'cate_name' => [ 'url' => 'server_url', 'host_ips' => null|[ 'ip', 'ip' ] ]
      * @var array
      */
-    private $serverUrlMap;
+    private $serverMap;
 
     /**
      * @var string
@@ -74,17 +74,17 @@ class Config
     /**
      * @return array
      */
-    public function getServerUrlMap()
+    public function getServerMap()
     {
-        return $this->serverUrlMap;
+        return $this->serverMap;
     }
 
     /**
-     * @param array $serverUrlMap
+     * @param array $serverMap
      */
-    public function setServerUrlMap($serverUrlMap)
+    public function setServerMap($serverMap)
     {
-        $this->serverUrlMap = $serverUrlMap;
+        $this->serverMap = $serverMap;
     }
 
     /**

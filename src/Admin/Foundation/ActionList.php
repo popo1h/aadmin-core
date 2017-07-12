@@ -16,8 +16,8 @@ class ActionList
     {
         $result = [];
 
-        $serverUrlMap = $application->config->getServerUrlMap();
-        foreach ($serverUrlMap as $cateName => $serverUrl) {
+        $serverMap = $application->config->getServerMap();
+        foreach ($serverMap as $cateName => $server) {
             if (isset($cateNames) && !in_array($cateName, $cateNames)) {
                 continue;
             }

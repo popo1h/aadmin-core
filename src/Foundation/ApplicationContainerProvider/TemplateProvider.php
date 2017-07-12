@@ -20,8 +20,8 @@ class TemplateProvider implements ServiceProviderInterface
             try {
                 $loader->addPath($pimple['config']->getLocalTemplatePath(), '__local__');
 
-                $serverUrlMap = $pimple['config']->getServerUrlMap();
-                foreach ($serverUrlMap as $cateName => $serverUrl) {
+                $serverMap = $pimple['config']->getServerMap();
+                foreach ($serverMap as $cateName => $server) {
                     $loader->addPath($cateName, $cateName);
                 }
             } catch (\Exception $e) {

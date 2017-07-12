@@ -16,17 +16,17 @@ class ApiClient
     protected $net;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $serverUrlMap;
+    protected $serverMap;
 
     /**
      * @param Net $net
      */
-    public function __construct(Net $net, $serverUrlMap)
+    public function __construct(Net $net, $serverMap)
     {
         $this->net = $net;
-        $this->serverUrlMap = $serverUrlMap;
+        $this->serverMap = $serverMap;
     }
 
     /**
@@ -42,13 +42,14 @@ class ApiClient
         $request->setActionName($actionName);
         $request->setParam($param);
 
-        if (!isset($this->serverUrlMap[$cateName])) {
+        if (!isset($this->serverMap[$cateName])) {
             throw new AadminCoreException('request api error');
         }
 
-        $apiUrl = $this->serverUrlMap[$cateName];
+        $apiUrl = $this->serverMap[$cateName]['url'];
+        $hostIps = $this->serverMap[$cateName]['host_ips'];
 
-        $responseStr = $this->net->request($apiUrl, serialize($request));
+        $responseStr = $this->net->request($apiUrl, serialize($request), $hostIps);
         $response = unserialize($responseStr);
 
         $requestInfo = new RequestInfo();
