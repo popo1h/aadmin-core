@@ -72,7 +72,10 @@ class RequestParam implements \Serializable
     {
         $this->file = [];
         foreach ($files as $key => $file) {
-            $this->file[$key] = File::buildByFile($file);
+            $fileObj = File::buildByFile($file);
+            if ($fileObj) {
+                $this->file[$key] = $fileObj;
+            }
         }
     }
 

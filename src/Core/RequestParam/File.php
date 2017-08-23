@@ -50,10 +50,13 @@ class File implements \Serializable
 
     /**
      * @param array $file item of $_FILES
-     * @return File
+     * @return File|null;
      */
     public static function buildByFile($file)
     {
+        if (!isset($file['tmp_name']) || !isset($file['name']) || !isset($file['type']) || !isset($file['size'])) {
+            return null;
+        }
         return new static($file['tmp_name'], $file['name'], $file['type'], $file['size']);
     }
 
