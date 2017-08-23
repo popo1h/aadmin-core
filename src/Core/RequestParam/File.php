@@ -54,7 +54,7 @@ class File implements \Serializable
      */
     public static function buildByFile($file)
     {
-        if (!isset($file['tmp_name']) || !isset($file['name']) || !isset($file['type']) || !isset($file['size'])) {
+        if (!isset($file['tmp_name']) || !isset($file['name']) || !isset($file['type']) || !isset($file['size']) || !is_file($file['tmp_name'])) {
             return null;
         }
         return new static($file['tmp_name'], $file['name'], $file['type'], $file['size']);
