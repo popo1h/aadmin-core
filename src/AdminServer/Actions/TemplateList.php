@@ -48,9 +48,9 @@ class TemplateList extends Action
                 continue;
             }
 
-            $fullFilename = $path . DIRECTORY_SEPARATOR . $filename;
+            $fullFilename = $path . '/' . $filename;
             if (is_dir($fullFilename)) {
-                $files = array_merge($files, $this->getFiles($fullFilename, $basePath . $filename . DIRECTORY_SEPARATOR));
+                $files = array_merge($files, $this->getFiles($fullFilename, $basePath . $filename . '/'));
             } else {
                 $files[$basePath . $filename] = $fullFilename;
             }
