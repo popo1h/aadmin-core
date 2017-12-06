@@ -3,7 +3,7 @@
 namespace AadminCore\Api;
 
 use AadminCore\Core\Action;
-use AadminCore\Core\Request;
+use AadminCore\Core\RequestParam;
 use AadminCore\Exceptions\AadminCoreException;
 
 class ApiServer
@@ -82,9 +82,14 @@ class ApiServer
         $request = unserialize($requestStr);
         $action_name = $request->getActionName();
 
-        $action = $this->getAction($action_name);
+        /**
+         * @var $param RequestParam
+         */
+        $param = $request->getParam();
 
-        $response = $action->doAction($request->getParam());
+        $action = $this->getAction($action_name);
+        $action->setUserId($param->getGetDataByName('__user_id'));
+        $response = $action->doAction($param);
 
         return $this->net->respond(serialize($response));
     }
